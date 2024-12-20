@@ -37,5 +37,6 @@ protected:
     QSplitter *leftSplitter_ = nullptr;           // 放多个Left Dock  
     QSplitter *rightSplitter_ = nullptr;          // 放多个Right Dock  
 
-    QWidget *centerWidget_ = nullptr;             // 中心部件  
+    QFrame *center_frame = nullptr;                // 中心部件的Frame
+    QWidget *center_widget = nullptr;             // 中心部件  
 };

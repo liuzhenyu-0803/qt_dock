@@ -7,8 +7,6 @@
 MyDockWidget::MyDockWidget(const QString &title, QWidget *parent)
     : QFrame(parent)
 {
-    setFrameShape(QFrame::StyledPanel);
-    setFrameShadow(QFrame::Raised);
     setObjectName("MyDockWidget");
 
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
@@ -22,16 +20,18 @@ MyDockWidget::MyDockWidget(const QString &title, QWidget *parent)
     titleLayout->setMargin(2);
     titleLayout->setSpacing(5);
 
+    titleBar->setStyleSheet("QFrame#DockWidgetTitleBar { background-color: rgb(200, 200, 200); border: none; }");
+
     m_titleLabel = new QLabel(title, titleBar);
     titleLayout->addWidget(m_titleLabel);
 
     titleLayout->addStretch();
 
     // 示例：添加一个关闭按钮  
-    QPushButton *closeBtn = new QPushButton("×", titleBar);
-    closeBtn->setFixedSize(20, 20);
-    titleLayout->addWidget(closeBtn);
-    connect(closeBtn, &QPushButton::clicked, this, &MyDockWidget::onCloseButtonClicked);
+    //QPushButton *closeBtn = new QPushButton("×", titleBar);
+    //closeBtn->setFixedSize(20, 20);
+    //titleLayout->addWidget(closeBtn);
+    //connect(closeBtn, &QPushButton::clicked, this, &MyDockWidget::onCloseButtonClicked);
 
     mainLayout->addWidget(titleBar);
 
@@ -40,7 +40,9 @@ MyDockWidget::MyDockWidget(const QString &title, QWidget *parent)
     QVBoxLayout *contentLayout = new QVBoxLayout(m_contentWidget);
     contentLayout->setMargin(4);
     contentLayout->setSpacing(4);
-    m_contentWidget->setLayout(contentLayout);
+    m_contentWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Expanding);
+    m_contentWidget->setObjectName("MyDockWidget");
+    m_contentWidget->setStyleSheet("QFrame#MyDockWidget { background-color: cyan; border: none; }");
 
     mainLayout->addWidget(m_contentWidget);
 }

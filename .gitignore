@@ -6,3 +6,5 @@ debug.log
 x64
 
 dock/dock.vcxproj.user
+
+.vs/

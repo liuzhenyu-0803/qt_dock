@@ -24,14 +24,17 @@ Widget::Widget(QWidget *parent)
     // 在 QMainWindow 通常 setCentralWidget  
     // 这里我们自己放一个普通控件作为 center  
     QWidget *centerWidget = new QWidget();
-    centerWidget->setStyleSheet("background-color: #FFFFFF;");
+    centerWidget->setObjectName("centerWidget");
+    centerWidget->setStyleSheet("#centerWidget{background-color: #FF0000;}");
     dockContainer->setCentralWidget(centerWidget);
 
     // 添加若干 DockWidget  
-    //MyDockWidget *dockLeft = new MyDockWidget("Dock Left");
+    MyDockWidget *dockLeft = new MyDockWidget("Dock Left");
+    dockLeft->setObjectName("dockLeft");
     //auto dockLeftFrame = new QFrame();
     //dockLeftFrame->setStyleSheet("background-color: #00FF00;");
     //dockLeft->setContentWidget(dockLeftFrame);
+    dockContainer->addDockWidget(Qt::LeftDockWidgetArea, dockLeft);
 
     //MyDockWidget *dockRight = new MyDockWidget("Dock Right");
     //auto dockRightFrame = new QFrame();
